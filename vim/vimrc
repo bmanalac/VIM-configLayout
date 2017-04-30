@@ -1,0 +1,109 @@
+" .vimrc
+" Author: Brian Manalac <brianmanalac@gmail.com>
+" Source: http://github.com/bmanalac
+
+" Preamble ------------------------------------------------------------{{{
+
+filetype off
+filetype plugin indent on
+set nocompatible
+
+" }}} 
+" Basic options -------------------------------------------------------{{{
+
+set mouse=a
+set modelines=0
+set autoindent
+set showmode
+set showcmd
+set hidden
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set number 
+set norelativenumber
+set laststatus=2
+set history=1000
+set undofile
+set undoreload=10000
+set list
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set lazyredraw
+set matchtime=3
+set showbreak=↪
+set splitbelow
+set splitright
+set autowrite
+set autoread
+set shiftround
+set title
+set linebreak
+set colorcolumn=+1
+
+" }}}
+" Line Return ---------------------------------------------------------{{{
+"
+" Make sure Vim returns to the same line when you reopen a file.
+" Thanks, Amit
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+" }}}
+" Tabs, spaces, wrapping ----------------------------------------------{{{
+
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set wrap
+set textwidth=80
+set formatoptions=qrn1j
+set colorcolumn=+1
+
+" }}}
+" Folding -------------------------------------------------------------{{{
+
+set foldmethod=marker
+
+" }}}
+" Color scheme --------------------------------------------------------{{{
+
+syntax on
+set background=dark
+colorscheme onedark
+let g:onedark_terminal_italics = 1
+
+" }}}
+" Vundle Plugins ------------------------------------------------------{{{
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
+" }}}
+" Plugin Settings -----------------------------------------------------{{{
+
+" Airline {{{
+
+let g:airline_powerline_fonts=1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_theme = 'onedark'
+let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
+let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
+let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
+let g:airline#extensions#tabline#show_splits = 0
+
+" }}}
+
+" }}}
